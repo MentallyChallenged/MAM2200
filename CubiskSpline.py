@@ -2,10 +2,11 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+
 # Definer funksjonen som vi skal integrere:
-def f(x):
-#return x**2*np.exp(-x)
-    return np.exp(-np.abs(x))
+#def f(x):
+#return funksjon
+
 
 def computecs(dataxs,datays):
     n = dataxs.size
@@ -19,6 +20,7 @@ def computecs(dataxs,datays):
     cs = np.zeros(n)
     cs[1:-1] = np.linalg.solve(A,bs)
     return cs
+
 def splineinterp(dataxs,datays,cs,x):
     k = np.argmax(dataxs>x)
     xk = dataxs[k]; xk1 = dataxs[k-1]
@@ -31,13 +33,13 @@ def splineinterp(dataxs,datays,cs,x):
 
 # Data som skal interpoleres
 N = 16
-xData = np.linspace(-1,1,N)
-yData = f(xData)
+xData = np.array([0,1,2,3])
+yData = np.array([1,1,-1,6])
 
 # Regn ut den kubiske splinen:
 cs = computecs(xData, yData)
 M = 256
-x=np.linspace(-1,1,M)
+x=np.linspace(0,4,M)
 
 #x = 0.95;
 pofx = np.zeros(M)
